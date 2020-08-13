@@ -5,17 +5,17 @@ import { EventsComponent } from './events/events.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 
-const routes: Routes = [
+  const routes: Routes = [
   {
-    path: '',
+    path: 'events',
     component: EventsComponent
   },
   {
-    path: '/authenticate',
+    path: 'authenticate',
     component: AuthenticateComponent
   },
   {
-    path: '/Bookings',
+    path: 'bookings',
     component: BookingsComponent
   }
 ];
