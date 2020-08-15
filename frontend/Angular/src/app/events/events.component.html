@@ -1,0 +1,50 @@
+<div class="container">
+    <br>
+
+
+    <form>
+        <div class="form">
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" class="form-control" placeholder="title"
+                    [(ngModel)]="title" name="title">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="description"
+                    [(ngModel)]="description" name="description">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2">
+                    <input type="Number" class="form-control" placeholder="price"
+                    [(ngModel)]="prie" name="price">
+                </div>
+                <div class="col-3">
+                    <input type="date" class="form-control" placeholder="date"
+                    [(ngModel)]="date" name="date">
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary" (click)='submit()'>enter</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+    
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">title</h5>
+                    <p class="card-text">description</p>
+                    <a href="#" class="card-link">price</a>
+                    <a href="#" class="card-link">date</a>
+                </div>
+            </div>
+            <br>
+        </div>
+
+    </div>
+</div>
