@@ -9,6 +9,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { EventsComponent } from './events/events.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthContent  } from './content/auth-content';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     GraphQLModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthContent],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

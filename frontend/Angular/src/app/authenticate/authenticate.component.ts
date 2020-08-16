@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 import { Router } from '@angular/router';
+import { AuthContent  } from '../content/auth-content';
 
 const createUser = gql`
     mutation createUser($email: String!, $password: String!) {
@@ -44,9 +45,9 @@ export class AuthenticateComponent implements OnInit {
   result;
   error;
 
-  login: {userId : String, token: String, tokenExpiration: Number};
+  login: {userId : string, token: string, tokenExpiration: number};
 
-  constructor(private apollo: Apollo, private route: Router) { }
+  constructor(private apollo: Apollo, private route: Router, private authContent: AuthContent) { }
 
   ngOnInit() {
     
@@ -54,6 +55,7 @@ export class AuthenticateComponent implements OnInit {
 
   submit() {
     console.log(this.user + " " + this.password);
+    // sign up
     if(this.button1 == "sign up") {
       this.query = this.apollo.mutate({
         mutation: createUser,
@@ -68,6 +70,7 @@ export class AuthenticateComponent implements OnInit {
         this.error = error;
       })
     }
+    //login
     else if(this.button1 == "login") {
       this.query = this.apollo.watchQuery({
         query: loginUser,
@@ -76,14 +79,16 @@ export class AuthenticateComponent implements OnInit {
 
       this.query.valueChanges.subscribe( result => {
         this.login = result.data.login;
+        this.authContent.setLoginData(this.login);
         this.error = null;
-
+        // navigate once user login
         this.route.navigate(['/events']);
       },
       (error) => {
         this.error = error;
       })
     }
+
   }
 
   switch() {

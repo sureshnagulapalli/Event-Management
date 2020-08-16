@@ -1,6 +1,5 @@
 <div class="container">
     <br>
-    
     <form>
         <div class="form">
             <div class="row">
@@ -33,17 +32,17 @@
     <hr>
     
     <div class="row">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">title</h5>
-                    <p class="card-text">description</p>
-                    <a href="#" class="card-link">price</a>
-                    <a href="#" class="card-link">date</a>
+            <div class="col" *ngFor = "let event of events">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">{{ event.description }}</p>
+                        <a href="#" class="card-link">{{ event.price }}</a>
+                        <a href="#" class="card-link">{{ event.date.substr(0,10) }}</a>
+                    </div>
                 </div>
+                <br>
             </div>
-            <br>
-        </div>
-
+        
     </div>
 </div>
