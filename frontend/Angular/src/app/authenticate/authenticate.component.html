@@ -1,3 +1,10 @@
+<br>
+<div class="alert alert-danger container" role="alert" *ngIf = "error != null">
+    {{ error }}
+</div>
+<div class="alert alert-success container" role="alert" *ngIf = "error == null && result != null">
+    {{ result }}
+</div>
 <div class="container" style="width: 28rem;">
     <form>
         <div class="form-group">
@@ -20,5 +27,5 @@
                 <button type="button" class="btn btn-primary" (click)='switch()'>switch to {{ button2 }}</button>
             </div>
         </div>
-    </form> 
+    </form>
 </div>

@@ -12,8 +12,7 @@ export class EventsComponent implements OnInit {
   price;
   date = '';
 
-  
-  Events = [];
+  events: [] = [];
 
   constructor() { }
 
@@ -22,6 +21,7 @@ export class EventsComponent implements OnInit {
 
   submit() {
     console.log(this.title + " " + this.description + " " + this.price + " " + this.date);
+    this.events.push();
   }
 
 }
