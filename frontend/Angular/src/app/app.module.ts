@@ -10,13 +10,15 @@ import { EventsComponent } from './events/events.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthContent  } from './content/auth-content';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticateComponent,
     BookingsComponent,
-    EventsComponent
+    EventsComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

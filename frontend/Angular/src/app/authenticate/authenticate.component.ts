@@ -50,11 +50,10 @@ export class AuthenticateComponent implements OnInit {
   constructor(private apollo: Apollo, private route: Router, private authContent: AuthContent) { }
 
   ngOnInit() {
-    
+    localStorage.clear();
   }
 
   submit() {
-    console.log(this.user + " " + this.password);
     // sign up
     if(this.button1 == "sign up") {
       this.query = this.apollo.mutate({

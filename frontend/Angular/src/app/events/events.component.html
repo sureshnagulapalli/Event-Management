@@ -32,17 +32,17 @@
     <hr>
     
     <div class="row">
-            <div class="col" *ngFor = "let event of events">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ event.title }}</h5>
-                        <p class="card-text">{{ event.description }}</p>
-                        <a href="#" class="card-link">{{ event.price }}</a>
-                        <a href="#" class="card-link">{{ event.date.substr(0,10) }}</a>
-                    </div>
+        <div class="col" *ngFor = "let event of events">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <p class="card-text">{{ event.description }}</p>
+                    <a href="#" class="card-link">{{ event.price }}</a>
+                    <a href="#" class="card-link">{{ event.date.substr(0,10) }}</a>
                 </div>
-                <br>
+                <button type='button' class="btn btn-outline-success" (click)="onBook(event._id)" *ngIf="login">book</button>
             </div>
-        
+            <br>
+        </div>
     </div>
 </div>

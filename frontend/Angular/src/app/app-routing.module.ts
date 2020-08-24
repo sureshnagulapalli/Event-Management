@@ -6,18 +6,10 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 
   const routes: Routes = [
-  {
-    path: 'events',
-    component: EventsComponent
-  },
-  {
-    path: 'authenticate',
-    component: AuthenticateComponent
-  },
-  {
-    path: 'bookings',
-    component: BookingsComponent
-  }
+  { path: '', redirectTo: 'authenticate', pathMatch: 'full' },
+  { path: 'events', component: EventsComponent },
+  { path: 'authenticate', component: AuthenticateComponent },
+  { path: 'bookings', component: BookingsComponent }
 ];
 
 @NgModule({

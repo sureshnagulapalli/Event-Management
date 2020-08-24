@@ -1,1 +1,15 @@
-<p>bookings works!</p>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col" *ngFor = "let booking of allBookings">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ booking.event.title }}</h5>
+                    <p class="card-text">{{ booking.updatedAt.substr(0,10) }}</p>
+                </div>
+                <button type='button' class="btn btn-outline-danger" (click)="onCancel(booking._id)">cancel</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

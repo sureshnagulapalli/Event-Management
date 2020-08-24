@@ -25,10 +25,14 @@ const creatEvents = gql`
       description
       date
       price
-      creator {
-        _id
-        email
-      }
+    }
+  }
+`;
+
+const bookEvent = gql`
+  mutation bookEvent($eventId: ID!){
+    bookEvent(eventId: $eventId) {
+      _id
     }
   }
 `;
@@ -45,18 +49,18 @@ export class EventsComponent implements OnInit {
   price: number;
   date: string = '';
 
+  login: boolean = false;
 
-  Event: { title: string, description: string, price: string,date: string };
+  Event: { id: string, title: string, description: string, price: string,date: string };
   events: Event[] = [];
 
   query;
   mutation;
+  mutationBook;
 
   constructor(private authContent: AuthContent, private apollo: Apollo) { }
 
   ngOnInit() {
-    console.log(this.authContent);
-
     this.query = this.apollo.watchQuery({
       query: getEvents
     });
@@ -64,6 +68,13 @@ export class EventsComponent implements OnInit {
     this.query.valueChanges.subscribe( result => {
       this.events = result.data.events;
     });
+
+    if(localStorage.getItem('token')) {
+      this.login = true;
+    }
+    else {
+      this.login = false;
+    }
   }
 
   submit() {
@@ -80,8 +91,18 @@ export class EventsComponent implements OnInit {
       this.date = null;
       this.query.refetch();
     });
+  }
 
+  onBook(id: String) {
+    console.log(id);
+    this.mutationBook = this.apollo.mutate({
+      mutation: bookEvent,
+      variables: {eventId: id}
+    });
 
+    this.mutationBook.subscribe( result => {
+      console.log(result.data);
+    })
   }
 
 }

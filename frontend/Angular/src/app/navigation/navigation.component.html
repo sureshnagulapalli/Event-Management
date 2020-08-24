@@ -1,0 +1,10 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Events</a>
+    <nav class="nav">
+    <a class="nav-link" routerLink="/authenticate" *ngIf="!login">Authenticate</a>
+    <a class="nav-link" routerLink="/events">Events</a>
+    <a class="nav-link" routerLink="/bookings" *ngIf="login">Bookings</a>
+    <a type="button" class="nav-link" (click)="onLogout()" *ngIf="login">Logout</a>
+    {{ user }}
+    </nav>
+</nav>

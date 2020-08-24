@@ -4,7 +4,6 @@ export class AuthContent {
         token: '',
         tokenExpiration: 0
     }
-    
     getData() {
         return this.authData;
     }
@@ -14,6 +13,7 @@ export class AuthContent {
         this.authData.token = loginInfo.token;
         this.authData.tokenExpiration = loginInfo.tokenExpiration;
         localStorage.setItem('token', this.authData.token);
+        localStorage.setItem('user', this.authData.userId);
     }
 
     setLogoutData() {
@@ -21,6 +21,6 @@ export class AuthContent {
         this.authData.userId = '';
         this.authData.tokenExpiration = 0;
 
-        localStorage.removeItem('token');
+        localStorage.clear();
     }
 }
