@@ -10,13 +10,12 @@ import { AuthContent } from '../content/auth-content';
 export class NavigationComponent implements OnInit {
 
   login: boolean =false;
-  user;
+
   constructor(private router: Router, private authContent: AuthContent) { 
 
   router.events.subscribe( (event: Event) => {
     if (event instanceof NavigationStart) {
       if(localStorage.getItem('token')) {
-        this.user = localStorage.getItem('user');
         this.login = true;
       }
       else {
@@ -28,7 +27,6 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem('token')) {
-      this.user = localStorage.getItem('user');
       this.login = true;
     }
     else {

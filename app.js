@@ -10,6 +10,7 @@ const isAuth = require('./middleware/is-auth');
 const app = express();
 
 app.use(bodyParser.json());
+//app.use(express.static(process.cwd()+"/frontend/dist/Angular"));
 
 app.use((req,res,next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

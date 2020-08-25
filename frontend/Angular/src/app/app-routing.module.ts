@@ -6,7 +6,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 
   const routes: Routes = [
-  { path: '', redirectTo: 'authenticate', pathMatch: 'full' },
+  { path: '', redirectTo: 'authenticate', pathMatch: 'full'},
   { path: 'events', component: EventsComponent },
   { path: 'authenticate', component: AuthenticateComponent },
   { path: 'bookings', component: BookingsComponent }
