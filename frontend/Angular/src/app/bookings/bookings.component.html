@@ -1,15 +1,26 @@
-<br>
 <div class="container">
+    <br>
     <div class="row justify-content-center">
-        <div class="col-7" *ngFor = "let booking of allBookings">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ booking.event.title }}</h5>
-                    <p class="card-text">{{ booking.updatedAt.substr(0,10) }}</p>
+        <div class="col-8" *ngFor = "let booking of allBookings">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="card" style="width: 35rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <h5 class="card-title col-auto">{{ booking.event.title }}</h5>
+                                <p class="card-text col-auto mr-auto">${{ booking.event.price }}</p>
+                                <p class="card-text col-auto">booked on: &nbsp;<b>{{booking.updatedAt.substr(0,10)}}</b></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type='button' class="btn btn-outline-danger" (click)="onCancel(booking._id)">cancel</button>
+                <div class="col">
+                    <button type='button'  style="height: 5rem;"
+                    class="btn btn-outline-danger col-auto" (click)="onCancel(booking._id)">cancel</button>
+                </div>
             </div>
             <br>
         </div>
     </div>
 </div>
+

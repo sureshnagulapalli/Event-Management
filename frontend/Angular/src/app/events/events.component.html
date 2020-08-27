@@ -1,6 +1,7 @@
 <div class="container">
     <br>
-    <form *ngIf="login">
+    <div *ngIf="login">
+    <form>
         <div class="form">
             <div class="row justify-content-center">
                 <div class="col-auto">
@@ -29,9 +30,8 @@
             </div>
         </div>
     </form>
-
     <hr>
-    
+    </div>
     <div class="row justify-content-center">
         <div class="col-7" *ngFor = "let event of events">
             <div class="card" style="width: 30rem;">
@@ -47,8 +47,12 @@
                         </div>
                     </div>
                 </div>
-                <button type='button' class="btn btn-outline-success" *ngIf="!login" routerLink="/authenticate">book</button>
-                <button type='button' class="btn btn-outline-success" (click)="onBook(event._id)" *ngIf="login">book</button>
+                <button type='button' class="btn btn-outline-success" routerLink="/authenticate"
+                *ngIf="!login">book</button>
+                <button type='button' class="btn btn-outline-success" (click)="onBook(event._id)" 
+                *ngIf="login && !event.booked">book</button>
+                <button type='button' class="btn btn-outline-success" disabled 
+                *ngIf="login && event.booked">booked</button>
             </div>
             <br>
         </div>

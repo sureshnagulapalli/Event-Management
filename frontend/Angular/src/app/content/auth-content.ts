@@ -12,8 +12,8 @@ export class AuthContent {
         this.authData.userId = loginInfo.userId;
         this.authData.token = loginInfo.token;
         this.authData.tokenExpiration = loginInfo.tokenExpiration;
-        localStorage.setItem('token', this.authData.token);
-        localStorage.setItem('user', this.authData.userId);
+        localStorage.setItem('token', loginInfo.token);
+        localStorage.setItem('user', loginInfo.userId);
     }
 
     setLogoutData() {

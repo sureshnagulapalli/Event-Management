@@ -13,6 +13,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "graphql-tag",
+              "zen-observable"
+           ],
             "outputPath": "dist/Angular",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -62,7 +66,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Angular:build"
+            "browserTarget": "Angular:build",
+            "proxyConfig": "src/proxy.config.json"
           },
           "configurations": {
             "production": {

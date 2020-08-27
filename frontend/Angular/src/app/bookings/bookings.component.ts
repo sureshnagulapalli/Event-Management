@@ -9,6 +9,10 @@ const bookings = gql`
       _id
       event{
         title
+        price
+      }
+      user {
+        _id
       }
       updatedAt
     }
@@ -26,14 +30,12 @@ const cancelBooking = gql `
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
-  styleUrls: ['./bookings.component.css']
+  styleUrls: ['./bookings.component.css'] 
 })
 export class BookingsComponent implements OnInit {
 
   query;
-
-
-  allBookings = []; 
+  allBookings = [];
 
   constructor(private apollo: Apollo) { }
 
@@ -45,7 +47,6 @@ export class BookingsComponent implements OnInit {
     this.query.valueChanges.subscribe( result =>{
       this.allBookings = result.data.bookings;
     });
-
     this.query.refetch();
   }
 

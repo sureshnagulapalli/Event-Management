@@ -3,16 +3,25 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 import { AuthContent } from '../content/auth-content';
+import { BookingsComponent } from '../bookings/bookings.component';
 
 
 const getEvents = gql`
   query events{
-    events {
+    events: events {
       _id
       title
       description
       price
       date
+    }
+    bookings: bookings {
+      user {
+        _id
+      }
+      event {
+        _id
+      }
     }
   }
 `;
@@ -51,30 +60,49 @@ export class EventsComponent implements OnInit {
 
   login: boolean = false;
 
-  Event: { id: string, title: string, description: string, price: string,date: string };
-  events: Event[] = [];
+  events = [];
 
   query;
   mutation;
   mutationBook;
+  checkbooking;
+  bookedlist =  [];
 
   constructor(private authContent: AuthContent, private apollo: Apollo) { }
 
   ngOnInit() {
     this.query = this.apollo.watchQuery({
-      query: getEvents
+      query: getEvents, 
     });
 
+    if(localStorage.getItem('token')) { this.login = true; }
+    else { this.login = false; }
+    
     this.query.valueChanges.subscribe( result => {
-      this.events = result.data.events;
+      var tempUsers = result.data.bookings;
+      this.bookedlist = [];
+      for(var i=0; i< tempUsers.length; i++) {
+        if(localStorage.getItem('user') == tempUsers[i].user._id) {
+          this.bookedlist.push(tempUsers[i].event._id);
+        }
+      }
+      this.events = [];
+      var tempEvents = result.data.events;
+      for(var i=0; i<tempEvents.length; i++) {
+        var event = {
+          _id: tempEvents[i]._id,
+          title: tempEvents[i].title,
+          description: tempEvents[i].description,
+          price: tempEvents[i].price,
+          date: tempEvents[i].date,
+          booked: false
+        }
+        if(this.bookedlist.includes(event._id)) {
+          event.booked = true;
+        }
+        this.events.push(event);
+      }
     });
-
-    if(localStorage.getItem('token')) {
-      this.login = true;
-    }
-    else {
-      this.login = false;
-    }
   }
 
   submit() {
@@ -84,7 +112,6 @@ export class EventsComponent implements OnInit {
     });
 
     this.mutation.subscribe( result =>{
-
       this.title = null;
       this.description = null;
       this.price = null;
@@ -94,15 +121,13 @@ export class EventsComponent implements OnInit {
   }
 
   onBook(id: String) {
-    console.log(id);
     this.mutationBook = this.apollo.mutate({
       mutation: bookEvent,
       variables: {eventId: id}
     });
 
     this.mutationBook.subscribe( result => {
-      console.log(result.data);
+      this.query.refetch();
     })
   }
-
 }

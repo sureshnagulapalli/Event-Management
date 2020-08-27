@@ -10,7 +10,7 @@ const isAuth = require('./middleware/is-auth');
 const app = express();
 
 app.use(bodyParser.json());
-//app.use(express.static(process.cwd()+"/frontend/dist/Angular"));
+app.use(express.static(process.cwd()+"/frontend/dist/"));
 
 app.use((req,res,next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,9 +29,13 @@ app.use(
   graphqlHttp({
     schema: graphQlSchema,
     rootValue: graphQlResolvers,
-    graphiql: true
+    graphiql: false
   })
 );
+
+app.use('/', (req,res) => {
+  res.sendFile(process.cwd()+"/frontend/dist/index.html")
+});
 
 mongoose
   .connect(
@@ -39,6 +43,7 @@ mongoose
   .then(() => {
     console.log("server started");
     app.listen(3000);
+    //app.listen(process.env.PORT, process.env.IP);
   })
   .catch(err => {
     console.log(err);
