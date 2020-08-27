@@ -10,7 +10,7 @@ const isAuth = require('./middleware/is-auth');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(process.cwd()+"/frontend/dist/"));
+app.use(express.static(process.cwd()+"/frontend/Angular/dist/Angular"));
 
 app.use((req,res,next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,7 +34,7 @@ app.use(
 );
 
 app.use('/', (req,res) => {
-  res.sendFile(process.cwd()+"/frontend/dist/index.html")
+  res.sendFile(process.cwd()+"/frontend/Angular/dist/Angular/index.html")
 });
 
 mongoose
